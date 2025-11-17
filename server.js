@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = 'fit-training-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'fit-training-secret-key-change-in-production';
 
 // Middleware
 app.use(cors());
