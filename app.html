@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e1e1e">
+    <title>Fit Training - App</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h2>Bem-vindo, <span id="userName"></span></h2>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </header>
+        
+        <div class="chart-container">
+            <h3>Progresso de Treino</h3>
+            <div class="chart-wrapper">
+                <canvas id="progressChart"></canvas>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-btn" onclick="openSection('instructions')">
+                <div class="icon">📋</div>
+                <span>Instruções do Treinador</span>
+            </button>
+            <button class="action-btn" onclick="openSection('workout')">
+                <div class="icon">💪</div>
+                <span>Treino</span>
+            </button>
+            <button class="action-btn" onclick="openSection('chat')">
+                <div class="icon">💬</div>
+                <span>Fale com o Treinador</span>
+            </button>
+            <button class="action-btn" onclick="openSection('measurements')">
+                <div class="icon">📊</div>
+                <span>Medição e Peso</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal para Instruções -->
+    <div id="instructionsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('instructionsModal')">&times;</span>
+            <h2>Instruções do Treinador</h2>
+            <div id="instructionsContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal para Treino -->
+    <div id="workoutModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('workoutModal')">&times;</span>
+            <h2>Rotina Semanal de Treino</h2>
+            <div id="workoutContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal para Chat -->
+    <div id="chatModal" class="modal hidden">
+        <div class="modal-content chat-modal">
+            <span class="close" onclick="closeModal('chatModal')">&times;</span>
+            <h2>Fale com o Treinador</h2>
+            <div id="chatMessages" class="chat-messages"></div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Medição -->
+    <div id="measurementsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('measurementsModal')">&times;</span>
+            <h2>Medição e Peso</h2>
+            <form id="measurementForm">
+                <div class="form-group">
+                    <label for="weight">Peso (kg)</label>
+                    <input type="number" id="weight" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="measurementDate">Data</label>
+                    <input type="date" id="measurementDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+            <div id="measurementsHistory" class="measurements-history"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e1e1e">
+    <title>Cadastro - Fit Training</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Cadastro</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <div class="input-label-group">
+                        <span class="input-label">Email / Número</span>
+                        <div class="label-line"></div>
+                    </div>
+                    <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="email@exemplo.com ou (00) 00000-0000" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+            <div id="passwordSection" class="password-section hidden">
+                <h3>Criar Senha</h3>
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <span id="passwordError" class="error-message"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Finalizar Cadastro</button>
+                </form>
+            </div>
+            <a href="index.html" class="back-link">← Voltar</a>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
+
